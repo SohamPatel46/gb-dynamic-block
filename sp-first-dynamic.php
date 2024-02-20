@@ -34,14 +34,23 @@ function sp_first_dynamic_sp_first_dynamic_block_init() {
 }
 add_action( 'init', 'sp_first_dynamic_sp_first_dynamic_block_init' );
 
+/**
+ * Renders the dynamic block based on the given block attributes and content.
+ *
+ * @param array $block_attributes The attributes of the block.
+ * @param string $content The content inside the block.
+ * @return string The rendered HTML content of the dynamic block.
+ */
 function sp_first_dynamic_block_render_callback( $block_attributes, $content ) {
-    $recent_posts = wp_get_recent_posts( array(
+
+	$recent_posts = wp_get_recent_posts( [
 		'numberposts' => $block_attributes['postCount'],
-        'post_status' => 'publish',
-    ) );
-    if ( count( $recent_posts ) === 0 ) {
-        return 'No posts';
-    }
+		'post_status' => 'publish',
+	] );
+
+	if ( count( $recent_posts ) === 0 ) {
+		return 'No posts';
+	}
 
 	ob_start();
 

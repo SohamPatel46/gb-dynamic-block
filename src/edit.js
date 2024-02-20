@@ -13,7 +13,6 @@ import { __ } from '@wordpress/i18n';
  */
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { RangeControl } from '@wordpress/components';
-
 import { useSelect } from '@wordpress/data';
 
 /**
@@ -46,7 +45,10 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			<InspectorControls style={ { marginBottom: '20px' } }>
 				<RangeControl
-					label="Number of posts"
+					label={ __(
+						'Number of Posts',
+						'sp-first-dynamic'
+					) }
 					value={ postCount }
 					onChange={ ( value ) => setAttributes( { postCount: value } ) }
 					min={ 1 }
@@ -67,7 +69,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						</li> );
 					})
 				) }
-				
 			</ul>
 		</div>
 	);
